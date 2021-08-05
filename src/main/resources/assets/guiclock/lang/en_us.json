@@ -1,0 +1,25 @@
+{
+    "guiclock.options": "Gui Clock Options",
+
+    "option.guiclock.must_have_clock_in_inventory": "Require Clock",
+    "option.guiclock.must_have_clock_in_inventory.true": "Enabled",
+    "option.guiclock.must_have_clock_in_inventory.false": "Disabled",
+    "option.guiclock.show_game_time": "Show Game Time",
+    "option.guiclock.show_game_time.true": "Enabled",
+    "option.guiclock.show_game_time.false": "Disabled",
+    "option.guiclock.show_real_time": "Show Real Time",
+    "option.guiclock.show_real_time.true": "Enabled",
+    "option.guiclock.show_real_time.false": "Disabled",
+    "option.guiclock.show_24h_format": "Show 24H Format",
+    "option.guiclock.show_24h_format.true": "Enabled",
+    "option.guiclock.show_24h_format.false": "Disabled",
+    "option.guiclock.show_time_seconds": "Show Seconds",
+    "option.guiclock.show_time_seconds.true": "Enabled",
+    "option.guiclock.show_time_seconds.false": "Disabled",
+    "option.guiclock.show_world_days": "Show World Days",
+    "option.guiclock.show_world_days.true": "Enabled",
+    "option.guiclock.show_world_days.false": "Disabled",
+    "option.guiclock.rgb_r": "Text Color R: %d",
+    "option.guiclock.rgb_g": "Text Color G: %d",
+    "option.guiclock.rgb_b": "Text Color B: %d"
+}

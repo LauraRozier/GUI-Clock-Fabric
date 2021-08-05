@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "guiclock",
+  "version": "2.4",
+  "environment": "client",
+  "icon": "assets/guiclock/icon.png",
+  "name": "GUI Clock",
+  "description": "GUI Clock is a minimalistic client-side mod which shows the time in the GUI on the screen when a clock is in the inventory.",
+  "authors": [
+    "ThibmoRozier"
+  ],
+  "contact": {
+    "homepage": "https://fabricmc.net/",
+    "sources": "https://github.com/thibmo/GUI-Clock-Fabric"
+  },
+
+  "entrypoints": {
+    "client": [
+      "net.thibmorozier.guiclock.GuiClock"
+    ],
+    "modmenu": [
+      "net.thibmorozier.guiclock.config.modmenu.ModMenuIntegration"
+    ]
+  },
+  "mixins": [
+    "guiclock.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.11.3",
+    "fabric": "*",
+    "minecraft": "1.17.x",
+    "java": ">=16"
+  },
+  "suggests": {
+    "modmenu": "*",
+    "guicompass": "*"
+  }
+}
