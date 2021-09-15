@@ -10,16 +10,17 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.Sets;
 import com.google.gson.*;
-import com.terraformersmc.modmenu.config.option.EnumConfigOption;
 import com.terraformersmc.modmenu.config.option.StringSetConfigOption;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.thibmorozier.guiclock.GuiClock;
-import net.thibmorozier.guiclock.config.option.BooleanConfigOption;
-import net.thibmorozier.guiclock.config.option.IntegerConfigOption;
-import net.thibmorozier.guiclock.config.option.ThibConfigOptionStorage;
+import net.thibmorozier.guiclock.config.enums.ClockPosEnum;
+import net.thibmorozier.guiclock.config.option.ClockBooleanConfigOption;
+import net.thibmorozier.guiclock.config.option.ClockPosEnumConfigOption;
+import net.thibmorozier.guiclock.config.option.ClockIntegerConfigOption;
+import net.thibmorozier.guiclock.config.option.ClockConfigOptionStorage;
 
-public class ConfigManager {
+public class ClockConfigManager {
     public static final Gson GSON = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).setPrettyPrinting().create();
     private static File file;
 
@@ -45,49 +46,45 @@ public class ConfigManager {
 				BufferedReader br = new BufferedReader(new FileReader(file));
 				JsonObject json = new JsonParser().parse(br).getAsJsonObject();
 
-				for (Field field : Config.class.getDeclaredFields()) {
+				for (Field field : ClockConfig.class.getDeclaredFields()) {
 					if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
 						if (StringSetConfigOption.class.isAssignableFrom(field.getType())) {
 							JsonArray jsonArray = json.getAsJsonArray(field.getName().toLowerCase(Locale.ROOT));
 
 							if (jsonArray != null) {
 								StringSetConfigOption option = (StringSetConfigOption)field.get(null);
-								ThibConfigOptionStorage.setStringSet(option.getKey(), Sets.newHashSet(jsonArray).stream().map(JsonElement::getAsString).collect(Collectors.toSet()));
+								ClockConfigOptionStorage.setStringSet(option.getKey(), Sets.newHashSet(jsonArray).stream().map(JsonElement::getAsString).collect(Collectors.toSet()));
 							}
-						} else if (IntegerConfigOption.class.isAssignableFrom(field.getType())) {
+						} else if (ClockIntegerConfigOption.class.isAssignableFrom(field.getType())) {
 							JsonPrimitive jsonPrimitive = json.getAsJsonPrimitive(field.getName().toLowerCase(Locale.ROOT));
 
 							if (jsonPrimitive != null && jsonPrimitive.isNumber()) {
-								IntegerConfigOption option = (IntegerConfigOption)field.get(null);
-								ThibConfigOptionStorage.setInteger(option.getKey(), jsonPrimitive.getAsInt());
+								ClockIntegerConfigOption option = (ClockIntegerConfigOption)field.get(null);
+								ClockConfigOptionStorage.setInteger(option.getKey(), jsonPrimitive.getAsInt());
 							}
-						} else if (BooleanConfigOption.class.isAssignableFrom(field.getType())) {
+						} else if (ClockBooleanConfigOption.class.isAssignableFrom(field.getType())) {
 							JsonPrimitive jsonPrimitive = json.getAsJsonPrimitive(field.getName().toLowerCase(Locale.ROOT));
 
 							if (jsonPrimitive != null && jsonPrimitive.isBoolean()) {
-								BooleanConfigOption option = (BooleanConfigOption)field.get(null);
-								ThibConfigOptionStorage.setBoolean(option.getKey(), jsonPrimitive.getAsBoolean());
+								ClockBooleanConfigOption option = (ClockBooleanConfigOption)field.get(null);
+								ClockConfigOptionStorage.setBoolean(option.getKey(), jsonPrimitive.getAsBoolean());
 							}
-						} else if (EnumConfigOption.class.isAssignableFrom(field.getType()) && field.getGenericType() instanceof ParameterizedType) {
+						} else if (ClockPosEnumConfigOption.class.isAssignableFrom(field.getType())) {
 							JsonPrimitive jsonPrimitive = json.getAsJsonPrimitive(field.getName().toLowerCase(Locale.ROOT));
 
 							if (jsonPrimitive != null && jsonPrimitive.isString()) {
-								Type generic = ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
+								ClockPosEnumConfigOption option = (ClockPosEnumConfigOption) field.get(null);
+								ClockPosEnum found = null;
 
-								if (generic instanceof Class<?>) {
-									EnumConfigOption<?> option = (EnumConfigOption<?>)field.get(null);
-									Enum<?> found = null;
-
-									for (Enum<?> value : ((Class<Enum<?>>) generic).getEnumConstants()) {
-										if (value.name().toLowerCase(Locale.ROOT).equals(jsonPrimitive.getAsString())) {
-											found = value;
-											break;
-										}
+								for (ClockPosEnum value : ClockPosEnum.values()) {
+									if (value.name().toLowerCase(Locale.ROOT).equals(jsonPrimitive.getAsString())) {
+										found = value;
+										break;
 									}
-
-									if (found != null)
-										ThibConfigOptionStorage.setEnumTypeless(option.getKey(), found);
 								}
+
+								if (found != null)
+									ClockConfigOptionStorage.setClockPosEnum(option.getKey(), found);
 							}
 						}
 					}
@@ -105,26 +102,22 @@ public class ConfigManager {
 		JsonObject config = new JsonObject();
 
 		try {
-			for (Field field : Config.class.getDeclaredFields()) {
+			for (Field field : ClockConfig.class.getDeclaredFields()) {
 				if (Modifier.isStatic(field.getModifiers()) && Modifier.isFinal(field.getModifiers())) {
-					if (BooleanConfigOption.class.isAssignableFrom(field.getType())) {
-						BooleanConfigOption option = (BooleanConfigOption)field.get(null);
-						config.addProperty(field.getName().toLowerCase(Locale.ROOT), ThibConfigOptionStorage.getBoolean(option.getKey()));
-					} else if (IntegerConfigOption.class.isAssignableFrom(field.getType())) {
-						IntegerConfigOption option = (IntegerConfigOption)field.get(null);
-						config.addProperty(field.getName().toLowerCase(Locale.ROOT), ThibConfigOptionStorage.getInteger(option.getKey()));
+					if (ClockBooleanConfigOption.class.isAssignableFrom(field.getType())) {
+						ClockBooleanConfigOption option = (ClockBooleanConfigOption)field.get(null);
+						config.addProperty(field.getName().toLowerCase(Locale.ROOT), ClockConfigOptionStorage.getBoolean(option.getKey()));
+					} else if (ClockIntegerConfigOption.class.isAssignableFrom(field.getType())) {
+						ClockIntegerConfigOption option = (ClockIntegerConfigOption)field.get(null);
+						config.addProperty(field.getName().toLowerCase(Locale.ROOT), ClockConfigOptionStorage.getInteger(option.getKey()));
 					} else if (StringSetConfigOption.class.isAssignableFrom(field.getType())) {
 						StringSetConfigOption option = (StringSetConfigOption)field.get(null);
 						JsonArray array = new JsonArray();
-						ThibConfigOptionStorage.getStringSet(option.getKey()).forEach(array::add);
+						ClockConfigOptionStorage.getStringSet(option.getKey()).forEach(array::add);
 						config.add(field.getName().toLowerCase(Locale.ROOT), array);
-					} else if (EnumConfigOption.class.isAssignableFrom(field.getType()) && field.getGenericType() instanceof ParameterizedType) {
-						Type generic = ((ParameterizedType) field.getGenericType()).getActualTypeArguments()[0];
-
-						if (generic instanceof Class<?>) {
-							EnumConfigOption<?> option = (EnumConfigOption<?>)field.get(null);
-							config.addProperty(field.getName().toLowerCase(Locale.ROOT), ThibConfigOptionStorage.getEnumTypeless(option.getKey(), (Class<Enum<?>>)generic).name().toLowerCase(Locale.ROOT));
-						}
+					} else if (ClockPosEnumConfigOption.class.isAssignableFrom(field.getType())) {
+						ClockPosEnumConfigOption option = (ClockPosEnumConfigOption) field.get(null);
+						config.addProperty(field.getName().toLowerCase(Locale.ROOT), ClockConfigOptionStorage.getClockPosEnum(option.getKey()).name().toLowerCase(Locale.ROOT));
 					}
 				}
 			}

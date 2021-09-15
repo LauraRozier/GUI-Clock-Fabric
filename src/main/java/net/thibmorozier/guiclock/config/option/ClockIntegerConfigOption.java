@@ -1,6 +1,6 @@
 package net.thibmorozier.guiclock.config.option;
 
-import net.thibmorozier.guiclock.util.TranslationUtil;
+import net.thibmorozier.guiclock.util.ClockTranslationUtil;
 
 import com.terraformersmc.modmenu.config.option.OptionConvertable;
 
@@ -8,24 +8,24 @@ import net.minecraft.client.option.DoubleOption;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 
-public class IntegerConfigOption implements OptionConvertable {
+public class ClockIntegerConfigOption implements OptionConvertable {
     private final String key, translationKey;
 	private final Text toolTip;
 	private final Integer defaultValue;
 	private final Integer minValue;
 	private final Integer maxValue;
 
-	public IntegerConfigOption(String key, Integer defaultValue, Integer minValue, Integer maxValue) {
-		ThibConfigOptionStorage.setInteger(key, defaultValue);
+	public ClockIntegerConfigOption(String key, Integer defaultValue, Integer minValue, Integer maxValue) {
+		ClockConfigOptionStorage.setInteger(key, defaultValue);
 		this.key = key;
-		this.translationKey = TranslationUtil.translationKeyOf("option", key);
+		this.translationKey = ClockTranslationUtil.translationKeyOf("option", key);
 		this.toolTip = new TranslatableText(translationKey + ".tooltip");
 		this.defaultValue = defaultValue;
 		this.minValue = minValue;
 		this.maxValue = maxValue;
 	}
 
-	public IntegerConfigOption(String key, Integer defaultValue) {
+	public ClockIntegerConfigOption(String key, Integer defaultValue) {
 		this(key, defaultValue, Integer.MIN_VALUE, Integer.MAX_VALUE);
 	}
 
@@ -34,11 +34,11 @@ public class IntegerConfigOption implements OptionConvertable {
 	}
 
 	public Integer getValue() {
-		return ThibConfigOptionStorage.getInteger(key);
+		return ClockConfigOptionStorage.getInteger(key);
 	}
 
 	public void setValue(Integer value) {
-		ThibConfigOptionStorage.setInteger(key, value);
+		ClockConfigOptionStorage.setInteger(key, value);
 	}
 
 	public Integer getDefaultValue() {
@@ -48,9 +48,9 @@ public class IntegerConfigOption implements OptionConvertable {
 	@Override
 	public DoubleOption asOption() {
 		return new DoubleOption(translationKey, minValue, maxValue, 1.0f,
-			ignored -> (double) ThibConfigOptionStorage.getInteger(key),
-			(option, value) -> ThibConfigOptionStorage.setInteger(key, value.intValue()),
-			(ignored, option) -> new TranslatableText(translationKey, ThibConfigOptionStorage.getInteger(key)),
+			ignored -> (double) ClockConfigOptionStorage.getInteger(key),
+			(option, value) -> ClockConfigOptionStorage.setInteger(key, value.intValue()),
+			(ignored, option) -> new TranslatableText(translationKey, ClockConfigOptionStorage.getInteger(key)),
 			client -> client.textRenderer.wrapLines(toolTip, 200)
 		);
 	}

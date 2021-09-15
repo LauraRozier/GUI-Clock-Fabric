@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "guiclock",
-  "version": "2.4",
+  "version": "2.5",
   "environment": "client",
   "icon": "assets/guiclock/icon.png",
   "name": "GUI Clock",

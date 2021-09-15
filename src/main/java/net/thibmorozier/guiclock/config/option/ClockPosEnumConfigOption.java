@@ -10,20 +10,19 @@ import net.minecraft.client.option.Option;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
-import net.thibmorozier.guiclock.util.TranslationUtil;
+import net.thibmorozier.guiclock.config.enums.ClockPosEnum;
+import net.thibmorozier.guiclock.util.ClockTranslationUtil;
 
-public class EnumConfigOption<E extends Enum<E>> implements OptionConvertable {
+public class ClockPosEnumConfigOption implements OptionConvertable {
 	private final String key, translationKey;
 	private final Text toolTip;
-	private final Class<E> enumClass;
-	private final E defaultValue;
+	private final ClockPosEnum defaultValue;
 
-	public EnumConfigOption(String key, E defaultValue) {
-		ThibConfigOptionStorage.setEnum(key, defaultValue);
+	public ClockPosEnumConfigOption(String key, ClockPosEnum defaultValue) {
+		ClockConfigOptionStorage.setClockPosEnum(key, defaultValue);
 		this.key = key;
-		this.translationKey = TranslationUtil.translationKeyOf("option", key);
+		this.translationKey = ClockTranslationUtil.translationKeyOf("option", key);
 		this.toolTip = new TranslatableText(translationKey + ".tooltip");
-		this.enumClass = defaultValue.getDeclaringClass();
 		this.defaultValue = defaultValue;
 	}
 
@@ -31,27 +30,27 @@ public class EnumConfigOption<E extends Enum<E>> implements OptionConvertable {
 		return key;
 	}
 
-	public E getValue() {
-		return ThibConfigOptionStorage.getEnum(key, enumClass);
+	public ClockPosEnum getValue() {
+		return ClockConfigOptionStorage.getClockPosEnum(key);
 	}
 
-	public void setValue(E value) {
-		ThibConfigOptionStorage.setEnum(key, value);
+	public void setValue(ClockPosEnum value) {
+		ClockConfigOptionStorage.setClockPosEnum(key, value);
 	}
 
 	public void cycleValue() {
-		ThibConfigOptionStorage.cycleEnum(key, enumClass);
+		ClockConfigOptionStorage.cycleClockPosEnum(key);
 	}
 
 	public void cycleValue(int amount) {
-		ThibConfigOptionStorage.cycleEnum(key, enumClass, amount);
+		ClockConfigOptionStorage.cycleClockPosEnum(key, amount);
 	}
 
-	public E getDefaultValue() {
+	public ClockPosEnum getDefaultValue() {
 		return defaultValue;
 	}
 
-	private static <E extends Enum<E>> Text getValueText(EnumConfigOption<E> option, E value) {
+	private static Text getValueText(ClockPosEnumConfigOption option, ClockPosEnum value) {
 		return new TranslatableText(option.translationKey + "." + value.name().toLowerCase(Locale.ROOT));
 	}
 
@@ -61,10 +60,10 @@ public class EnumConfigOption<E extends Enum<E>> implements OptionConvertable {
 
 	@Override
 	public Option asOption() {
-		return CyclingOption.create(translationKey, enumClass.getEnumConstants(),
+		return CyclingOption.create(translationKey, ClockPosEnum.values(),
             value -> getValueText(this, value),
-            ignored -> ThibConfigOptionStorage.getEnum(key, enumClass),
-            (ignored, option, value) -> ThibConfigOptionStorage.setEnum(key, value)
+            ignored -> ClockConfigOptionStorage.getClockPosEnum(key),
+            (ignored, option, value) -> ClockConfigOptionStorage.setClockPosEnum(key, value)
         ).tooltip((client) -> {
             List<OrderedText> list = client.textRenderer.wrapLines(toolTip, 200);
             return (value) -> { return list; };

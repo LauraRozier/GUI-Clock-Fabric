@@ -1,6 +1,6 @@
 package net.thibmorozier.guiclock.config.option;
 
-import net.thibmorozier.guiclock.util.TranslationUtil;
+import net.thibmorozier.guiclock.util.ClockTranslationUtil;
 
 import java.util.List;
 
@@ -12,24 +12,24 @@ import net.minecraft.text.OrderedText;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableText;
 
-public class BooleanConfigOption implements OptionConvertable {
+public class ClockBooleanConfigOption implements OptionConvertable {
     private final String key, translationKey;
 	private final Text toolTip;
 	private final boolean defaultValue;
 	private final Text enabledText;
 	private final Text disabledText;
 
-	public BooleanConfigOption(String key, boolean defaultValue, String enabledKey, String disabledKey) {
-		ThibConfigOptionStorage.setBoolean(key, defaultValue);
+	public ClockBooleanConfigOption(String key, boolean defaultValue, String enabledKey, String disabledKey) {
+		ClockConfigOptionStorage.setBoolean(key, defaultValue);
 		this.key = key;
-		this.translationKey = TranslationUtil.translationKeyOf("option", key);
+		this.translationKey = ClockTranslationUtil.translationKeyOf("option", key);
 		this.toolTip = new TranslatableText(translationKey + ".tooltip");
 		this.defaultValue = defaultValue;
 		this.enabledText = new TranslatableText(translationKey + "." + enabledKey);
 		this.disabledText = new TranslatableText(translationKey + "." + disabledKey);
 	}
 
-	public BooleanConfigOption(String key, boolean defaultValue) {
+	public ClockBooleanConfigOption(String key, boolean defaultValue) {
 		this(key, defaultValue, "true", "false");
 	}
 
@@ -38,15 +38,15 @@ public class BooleanConfigOption implements OptionConvertable {
 	}
 
 	public boolean getValue() {
-		return ThibConfigOptionStorage.getBoolean(key);
+		return ClockConfigOptionStorage.getBoolean(key);
 	}
 
 	public void setValue(boolean value) {
-		ThibConfigOptionStorage.setBoolean(key, value);
+		ClockConfigOptionStorage.setBoolean(key, value);
 	}
 
 	public void toggleValue() {
-		ThibConfigOptionStorage.toggleBoolean(key);
+		ClockConfigOptionStorage.toggleBoolean(key);
 	}
 
 	public boolean getDefaultValue() {
@@ -61,16 +61,16 @@ public class BooleanConfigOption implements OptionConvertable {
 	public CyclingOption<Boolean> asOption() {
 		if (enabledText != null && disabledText != null)
 			return CyclingOption.create(translationKey, enabledText, disabledText,
-				ignored -> ThibConfigOptionStorage.getBoolean(key),
-				(ignored, option, value) -> ThibConfigOptionStorage.setBoolean(key, value)
+				ignored -> ClockConfigOptionStorage.getBoolean(key),
+				(ignored, option, value) -> ClockConfigOptionStorage.setBoolean(key, value)
 			).tooltip((client) -> {
 				List<OrderedText> list = client.textRenderer.wrapLines(toolTip, 200);
 				return (value) -> { return list; };
 			});
 
 		return CyclingOption.create(translationKey, toolTip,
-			ignored -> ThibConfigOptionStorage.getBoolean(key),
-			(ignored, option, value) -> ThibConfigOptionStorage.setBoolean(key, value)
+			ignored -> ClockConfigOptionStorage.getBoolean(key),
+			(ignored, option, value) -> ClockConfigOptionStorage.setBoolean(key, value)
 		);
 	}
 }

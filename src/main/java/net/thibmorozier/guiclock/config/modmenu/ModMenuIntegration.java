@@ -11,7 +11,7 @@ public class ModMenuIntegration implements ModMenuApi {
     @Override
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return screen -> {
-            return new ThibScreenWidget(screen);
+            return new ClockScreenWidget(screen);
         };
     }
 }

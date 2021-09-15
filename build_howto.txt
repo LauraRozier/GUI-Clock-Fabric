@@ -1,10 +1,9 @@
 Versions and mapping update: https://fabricmc.net/versions.html
 
-./gradlew migrateMappings --mappings "1.17.1+build.61"
-
 ./gradlew genSources
 
 ./gradlew vscode
 
+./gradlew migrateMappings --mappings "1.17.1+build.61"
 ./gradlew build
 ./gradlew publish

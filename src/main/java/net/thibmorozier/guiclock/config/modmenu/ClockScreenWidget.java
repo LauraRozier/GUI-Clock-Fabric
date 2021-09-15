@@ -13,20 +13,20 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.OrderedText;
 import net.minecraft.text.TranslatableText;
-import net.thibmorozier.guiclock.config.Config;
-import net.thibmorozier.guiclock.config.ConfigManager;
+import net.thibmorozier.guiclock.config.ClockConfig;
+import net.thibmorozier.guiclock.config.ClockConfigManager;
 
 @Environment(EnvType.CLIENT)
-public class ThibScreenWidget extends GameOptionsScreen  {
+public class ClockScreenWidget extends GameOptionsScreen  {
     private ButtonListWidget buttonList;
 
-    public ThibScreenWidget(Screen previous) {
+    public ClockScreenWidget(Screen previous) {
         super(previous, MinecraftClient.getInstance().options, new TranslatableText("guiclock.options"));
     }
 
     protected void init() {
         this.buttonList = new ButtonListWidget(this.client, this.width, this.height, 32, this.height - 32, 25);
-        this.buttonList.addAll(Config.asOptions());
+        this.buttonList.addAll(ClockConfig.asOptions());
         addSelectableChild(this.buttonList);
 
         // Draw DONE button
@@ -45,6 +45,6 @@ public class ThibScreenWidget extends GameOptionsScreen  {
     }
 
 	public void removed() {
-		ConfigManager.save();
+		ClockConfigManager.save();
 	}
 }

@@ -4,7 +4,7 @@ import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 
 @Environment(EnvType.CLIENT)
-public enum  PositionEnum {
+public enum  ClockPosEnum {
     TOP_LEFT,
     TOP_CENTER,
     TOP_RIGHT,
