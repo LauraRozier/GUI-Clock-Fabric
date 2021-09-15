@@ -5,30 +5,48 @@
     "option.guiclock.must_have_clock_in_inventory.tooltip": "When enabled, will only show the time when a clock is present in the inventory.",
     "option.guiclock.must_have_clock_in_inventory.true": "Enabled",
     "option.guiclock.must_have_clock_in_inventory.false": "Disabled",
+
     "option.guiclock.show_game_time": "Show Game Time",
     "option.guiclock.show_game_time.tooltip": "When enabled, will show the Game Time.",
     "option.guiclock.show_game_time.true": "Enabled",
     "option.guiclock.show_game_time.false": "Disabled",
+
     "option.guiclock.show_real_time": "Show Real Time",
     "option.guiclock.show_real_time.tooltip": "When enabled, will show the Real Time.",
     "option.guiclock.show_real_time.true": "Enabled",
     "option.guiclock.show_real_time.false": "Disabled",
+
     "option.guiclock.show_24h_format": "Show 24H Format",
     "option.guiclock.show_24h_format.tooltip": "Sets the format of the clock to the 24-hour format.",
     "option.guiclock.show_24h_format.true": "Enabled",
     "option.guiclock.show_24h_format.false": "Disabled",
+
     "option.guiclock.show_time_seconds": "Show Seconds",
     "option.guiclock.show_time_seconds.tooltip": "Show the seconds in the Real Time clock.",
     "option.guiclock.show_time_seconds.true": "Enabled",
     "option.guiclock.show_time_seconds.false": "Disabled",
+
     "option.guiclock.show_world_days": "Show World Days",
     "option.guiclock.show_world_days.tooltip": "When enabled, will show the World's Day number.",
     "option.guiclock.show_world_days.true": "Enabled",
     "option.guiclock.show_world_days.false": "Disabled",
+
     "option.guiclock.rgb_r": "Text Color R: %d",
     "option.guiclock.rgb_r.tooltip": "The red RGB value for the clock text.",
     "option.guiclock.rgb_g": "Text Color G: %d",
     "option.guiclock.rgb_g.tooltip": "The green RGB value for the clock text.",
     "option.guiclock.rgb_b": "Text Color B: %d",
-    "option.guiclock.rgb_b.tooltip": "The blue RGB value for the clock text."
+    "option.guiclock.rgb_b.tooltip": "The blue RGB value for the clock text.",
+
+    "option.guiclock.position": "Text Location",
+    "option.guiclock.position.tooltip": "The screen location for the clock text.",
+    "option.guiclock.position.top_left": "Top-Left",
+    "option.guiclock.position.top_center": "Top-Center",
+    "option.guiclock.position.top_right": "Top-Right",
+    "option.guiclock.position.center_left": "Center-Left",
+    "option.guiclock.position.center_center": "Center-Center",
+    "option.guiclock.position.center_right": "Center-Right",
+    "option.guiclock.position.bottom_left": "Bottom-Left",
+    "option.guiclock.position.bottom_center": "Bottom-Center",
+    "option.guiclock.position.bottom_right": "Bottom-Right"
 }

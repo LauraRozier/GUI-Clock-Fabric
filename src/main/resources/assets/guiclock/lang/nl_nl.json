@@ -1,0 +1,52 @@
+{
+    "guiclock.options": "Gui Clock Opties",
+
+    "option.guiclock.must_have_clock_in_inventory": "Klok Benodigd",
+    "option.guiclock.must_have_clock_in_inventory.tooltip": "Wanneer deze optie actief is, zul je enkel de klok tekst zien wanneer je een klok in je inventaris hebt.",
+    "option.guiclock.must_have_clock_in_inventory.true": "Ingeschakeld",
+    "option.guiclock.must_have_clock_in_inventory.false": "Uitgeschakeld",
+
+    "option.guiclock.show_game_time": "Spel Tijd Weergeven",
+    "option.guiclock.show_game_time.tooltip": "Wanneer deze optie actief is, zal de spel tijd weergegeven worden.",
+    "option.guiclock.show_game_time.true": "Ingeschakeld",
+    "option.guiclock.show_game_time.false": "Uitgeschakeld",
+
+    "option.guiclock.show_real_time": "Echte Tijd Weergeven",
+    "option.guiclock.show_real_time.tooltip": "Wanneer deze optie actief is, zal de echte tijd weergegeven worden.",
+    "option.guiclock.show_real_time.true": "Ingeschakeld",
+    "option.guiclock.show_real_time.false": "Uitgeschakeld",
+
+    "option.guiclock.show_24h_format": "24H Formaat Weergeven",
+    "option.guiclock.show_24h_format.tooltip": "Wanneer deze optie actief is, wordt de tijd in het 24-uur formaat weergegeven.",
+    "option.guiclock.show_24h_format.true": "Ingeschakeld",
+    "option.guiclock.show_24h_format.false": "Uitgeschakeld",
+
+    "option.guiclock.show_time_seconds": "Seconden Weergeven",
+    "option.guiclock.show_time_seconds.tooltip": "Wanneer deze optie actief is, worden de seconden voor de echte tijd weergegeven.",
+    "option.guiclock.show_time_seconds.true": "Ingeschakeld",
+    "option.guiclock.show_time_seconds.false": "Uitgeschakeld",
+
+    "option.guiclock.show_world_days": "Wereld Dagen Weergeven",
+    "option.guiclock.show_world_days.tooltip": "Wanneer deze optie actief is, wordt de dag nummer van het spel weergegeven.",
+    "option.guiclock.show_world_days.true": "Ingeschakeld",
+    "option.guiclock.show_world_days.false": "Uitgeschakeld",
+
+    "option.guiclock.rgb_r": "Tekst Kleur R: %d",
+    "option.guiclock.rgb_r.tooltip": "De rode RGB waarde voor de klok tekst.",
+    "option.guiclock.rgb_g": "Tekst Kleur G: %d",
+    "option.guiclock.rgb_g.tooltip": "De groene RGB waarde voor de klok tekst.",
+    "option.guiclock.rgb_b": "Tekst Kleur B: %d",
+    "option.guiclock.rgb_b.tooltip": "De blauwe RGB waarde voor de klok tekst.",
+
+    "option.guiclock.position": "Text Positie",
+    "option.guiclock.position.tooltip": "De locatie voor de klok tekst op het scherm.",
+    "option.guiclock.position.top_left": "Top-Links",
+    "option.guiclock.position.top_center": "Top-Midden",
+    "option.guiclock.position.top_right": "Top-Rechts",
+    "option.guiclock.position.center_left": "Midden-Links",
+    "option.guiclock.position.center_center": "Midden-Midden",
+    "option.guiclock.position.center_right": "Midden-Rechts",
+    "option.guiclock.position.bottom_left": "Bodem-Links",
+    "option.guiclock.position.bottom_center": "Bodem-Midden",
+    "option.guiclock.position.bottom_right": "Bodem-Rechts"
+}

@@ -7,7 +7,9 @@ import java.util.ArrayList;
 import com.terraformersmc.modmenu.config.option.OptionConvertable;
 
 import net.minecraft.client.option.Option;
+import net.thibmorozier.guiclock.config.enums.PositionEnum;
 import net.thibmorozier.guiclock.config.option.BooleanConfigOption;
+import net.thibmorozier.guiclock.config.option.EnumConfigOption;
 import net.thibmorozier.guiclock.config.option.IntegerConfigOption;
 
 public class Config {
@@ -20,6 +22,7 @@ public class Config {
     public static final IntegerConfigOption RGB_R = new IntegerConfigOption("rgb_r", 224, 0, 255);
     public static final IntegerConfigOption RGB_G = new IntegerConfigOption("rgb_g", 224, 0, 255);
     public static final IntegerConfigOption RGB_B = new IntegerConfigOption("rgb_b", 224, 0, 255);
+    public static final EnumConfigOption<PositionEnum> POSITION = new EnumConfigOption<PositionEnum>("position", PositionEnum.BOTTOM_LEFT);
 
     public static Option[] asOptions() {
 		ArrayList<Option> options = new ArrayList<>();
