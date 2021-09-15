@@ -1,5 +1,7 @@
 # GUI Clock Fabric
 
+https://www.curseforge.com/minecraft/mc-mods/gui-clock-fabric
+
 This is mostly a Fabric port of [GUI Clock](https://www.curseforge.com/minecraft/mc-mods/gui-clock)
 
 ## Setup
